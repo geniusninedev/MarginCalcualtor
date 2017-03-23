@@ -1,9 +1,14 @@
 package com.example.andrioddev5.margincalcualtor;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,7 +26,7 @@ import java.util.concurrent.TimeUnit;
  * Created by AndriodDev5 on 16-03-2017.
  */
 
-public class RequestApp  extends AppCompatActivity {
+public class RequestApp extends AppCompatActivity {
 
     private OrderApp orderApp;
     private EditText editTextdevice;
@@ -43,6 +48,19 @@ public class RequestApp  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_app);
+
+
+        //keyboard hidden first time
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+        //customize toolbar
+        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Get App");
+
+
         editTextdevice = (EditText)findViewById(R.id.editTextDevice);
         editTextOS = (EditText)findViewById(R.id.editTextOS);
         editTextApplication = (EditText)findViewById(R.id.editTextApplication);
@@ -115,5 +133,44 @@ public class RequestApp  extends AppCompatActivity {
             Log.e("feedback ", e.toString());
         }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == android.R.id.home) {
+            Intent intent=new Intent(RequestApp.this,MainActivityDrawer.class);
+            finish();
+            startActivity(intent);
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch(keyCode){
+            case KeyEvent.KEYCODE_BACK:
+                Intent intent=new Intent(RequestApp.this,MainActivityDrawer.class);
+                finish();
+                startActivity(intent);
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+    //used this when mobile orientaion is changed
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Checks the orientation of the screen
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            //Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            //Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
+        }
     }
 }

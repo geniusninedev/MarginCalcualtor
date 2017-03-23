@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.andrioddev5.margincalcualtor">
+    package="com.nineinfosys.andrioddev5.margincalcualtor">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -22,7 +22,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivityDrawer"
+        <activity android:name="com.nineinfosys.andrioddev5.margincalcualtor.MainActivityDrawer"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,39 +52,39 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MarginCalcualtor.CurrencyExchange.CurrencyExchangeMain"
+        <activity android:name="com.nineinfosys.andrioddev5.margincalcualtor.MarginCalcualtor.CurrencyExchange.CurrencyExchangeMain"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivityDrawer"/>
+                android:value="com.nineinfosys.andrioddev5.margincalcualtor.MainActivityDrawer"/>
         </activity>
 
-        <activity android:name=".MarginCalcualtor.stocktrading.StockTradingCalculator"
+        <activity android:name="com.nineinfosys.andrioddev5.margincalcualtor.MarginCalcualtor.stocktrading.StockTradingCalculator"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivityDrawer"/>
+                android:value="com.nineinfosys.andrioddev5.margincalcualtor.MainActivityDrawer"/>
         </activity>
 
 
-        <activity android:name=".MarginCalcualtor.profitMargin.ProfitMarginMain"
+        <activity android:name="com.nineinfosys.andrioddev5.margincalcualtor.MarginCalcualtor.profitMargin.ProfitMarginMain"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivityDrawer"/>
+                android:value="com.nineinfosys.andrioddev5.margincalcualtor.MainActivityDrawer"/>
         </activity>
 
         <activity
-            android:name=".Login.LoginActivity"
+            android:name="com.nineinfosys.andrioddev5.margincalcualtor.Login.LoginActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
-            android:name=".RequestApp"
+            android:name="com.nineinfosys.andrioddev5.margincalcualtor.RequestApp"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivityDrawer" />
+                android:value="com.nineinfosys.andrioddev5.margincalcualtor.MainActivityDrawer" />
         </activity>
-        <activity android:name=".DashBord.ShowFeeds"></activity>
+        <activity android:name="com.nineinfosys.andrioddev5.margincalcualtor.DashBord.ShowFeeds"></activity>
     </application>
 
 

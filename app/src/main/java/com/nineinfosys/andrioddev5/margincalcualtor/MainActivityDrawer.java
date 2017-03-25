@@ -160,8 +160,9 @@ public class MainActivityDrawer extends AppCompatActivity {
 
                 if (menuItem.getItemId() == R.id.GetApps) {
 
-                   /* Intent intent=new Intent(MainActivityDrawer.this,RequestApp.class);
-                    startActivity(intent);*/
+                    Intent intent=new Intent(MainActivityDrawer.this,RequestApp.class);
+                    finish();
+                    startActivity(intent);
 
 
                 }

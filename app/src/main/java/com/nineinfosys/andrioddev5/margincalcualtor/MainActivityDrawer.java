@@ -30,8 +30,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nineinfosys.andrioddev5.margincalcualtor.DashBord.DashBord;
-import com.nineinfosys.andrioddev5.margincalcualtor.Login.Contacts;
-import com.nineinfosys.andrioddev5.margincalcualtor.Login.LoginActivity;
+import com.nineinfosys.andrioddev5.margincalcualtor.Contacts.Contacts;
+import com.nineinfosys.andrioddev5.margincalcualtor.LoginActivity.Login;
 import com.nineinfosys.andrioddev5.margincalcualtor.MarginCalcualtor.CurrencyExchange.CurrencyExchangeMain;
 import com.nineinfosys.andrioddev5.margincalcualtor.MarginCalcualtor.profitMargin.ProfitMarginMain;
 import com.nineinfosys.andrioddev5.margincalcualtor.MarginCalcualtor.stocktrading.StockTradingCalculator;
@@ -308,7 +308,7 @@ public class MainActivityDrawer extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if(firebaseAuth.getCurrentUser()==null){
                     Log.e("ForumMainActivity:", "User was null so directed to Login activity");
-                    Intent loginIntent = new Intent(MainActivityDrawer.this, LoginActivity.class);
+                    Intent loginIntent = new Intent(MainActivityDrawer.this, Login.class);
                     loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(loginIntent);
                     finish();

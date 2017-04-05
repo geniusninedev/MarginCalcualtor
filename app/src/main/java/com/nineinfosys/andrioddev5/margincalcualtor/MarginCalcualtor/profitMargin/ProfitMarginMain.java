@@ -13,6 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.nineinfosys.andrioddev5.margincalcualtor.R;
 
 import java.text.DecimalFormat;
@@ -35,6 +38,10 @@ public class ProfitMarginMain extends AppCompatActivity implements View.OnClickL
 
         //keyboard hidden first time
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        MobileAds.initialize(ProfitMarginMain.this, getString(R.string.ads_app_id));
+        AdView mAdView = (AdView) this.findViewById(R.id.adViewProfitMarginCalculator);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         //customize toolbar
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.app_bar);

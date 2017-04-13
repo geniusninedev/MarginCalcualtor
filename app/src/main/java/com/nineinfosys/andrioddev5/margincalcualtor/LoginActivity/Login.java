@@ -331,6 +331,7 @@ public class Login extends AppCompatActivity {
                                 //---- HERE YOU SEND THE EMAIL
                               //  mUser.sendEmailVerification();
                                 Toast.makeText(Login.this,"Verify your email first...",Toast.LENGTH_LONG).show();
+                                FirebaseAuth.getInstance().signOut();
                             }
 
 
@@ -516,7 +517,7 @@ public class Login extends AppCompatActivity {
 
         String user_id = mAuth.getCurrentUser().getUid();
         DatabaseReference current_user_db = mDataBase.child(user_id);
-        current_user_db.child("Name").setValue(user.getName());
+        current_user_db.child("name").setValue(user.getName());
         current_user_db.child("FacebookId").setValue(user.getId());
         current_user_db.child("Email").setValue(user.getEmail());
        // current_user_db.child("Gender").setValue(user.getGender());
@@ -525,7 +526,7 @@ public class Login extends AppCompatActivity {
     private void CreateGoogleUserInDataBase(){
         String user_id = mAuth.getCurrentUser().getUid();
         DatabaseReference current_user_db = mDataBaseGoogle.child(user_id);
-        current_user_db.child("Name").setValue(user.getName());
+        current_user_db.child("name").setValue(user.getName());
         current_user_db.child("GoogleId").setValue(user.getId());
         current_user_db.child("Email").setValue(user.getEmail());
 

@@ -108,6 +108,13 @@ public class MainActivityDrawer extends AppCompatActivity {
          */
 
 
+        // Button launches NewPostActivity
+       /* findViewById(R.id.fab_Forum).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivityDrawer.this, ForumActivity.class));
+            }
+        });*/
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {

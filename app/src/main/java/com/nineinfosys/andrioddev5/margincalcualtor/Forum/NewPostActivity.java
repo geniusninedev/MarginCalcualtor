@@ -1,6 +1,7 @@
 package com.nineinfosys.andrioddev5.margincalcualtor.Forum;
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -44,10 +45,10 @@ public class NewPostActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_post);
-/*
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Add New Post");*/
+        getSupportActionBar().setTitle("Add New Post");
         // [START initialize_database_ref]
         mDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.app_id));
         // [END initialize_database_ref]

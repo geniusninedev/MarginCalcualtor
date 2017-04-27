@@ -3,8 +3,11 @@ package com.nineinfosys.andrioddev5.margincalcualtor.MarginCalcualtor.stocktradi
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -20,7 +23,7 @@ import com.nineinfosys.andrioddev5.margincalcualtor.R;
 
 import java.text.DecimalFormat;
 
-public class StockTradingCalculator extends AppCompatActivity implements View.OnClickListener {
+public class StockTradingCalculator extends Fragment implements View.OnClickListener {
     EditText editTextStockPrice,editTextNoofShares,editTextMarginRate;
     TextView textViewResultAmontRequired;
     LinearLayout layoutDisplayResult,layoutWarning;
@@ -29,37 +32,36 @@ public class StockTradingCalculator extends AppCompatActivity implements View.On
     double stockPrice,noofShares,marginRate;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.stocktrading_main);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.stocktrading_main, null);
 
         //keyboard hidden first time
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        MobileAds.initialize(StockTradingCalculator.this, getString(R.string.ads_app_id));
-        AdView mAdView = (AdView) this.findViewById(R.id.adViewStockTradingCalculator);
+        MobileAds.initialize(getActivity(), getString(R.string.ads_app_id));
+        AdView mAdView = (AdView) v.findViewById(R.id.adViewStockTradingCalculator);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        //customize toolbar
+ /*       //customize toolbar
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Stock Trading Calcualtor");
+        getSupportActionBar().setTitle("Stock Trading Calcualtor");*/
 
-        layoutDisplayResult=(LinearLayout)findViewById(R.id.layoutDisplayResult);
-        layoutWarning=(LinearLayout)findViewById(R.id.layoutWarning);
-        editTextStockPrice=(EditText)findViewById(R.id.editTextStockPrice);
-        editTextNoofShares=(EditText)findViewById(R.id.editTextNumberofShares);
-        editTextMarginRate=(EditText)findViewById(R.id.editTextMarginRate);
-        textViewResultAmontRequired=(TextView) findViewById(R.id.textViewResultAmountRequired);
-        buttonCalculate=(Button)findViewById(R.id.buttonCalculate);
-        buttonReset=(Button)findViewById(R.id.buttonStockReset);
+        layoutDisplayResult=(LinearLayout)v.findViewById(R.id.layoutDisplayResult);
+        layoutWarning=(LinearLayout)v.findViewById(R.id.layoutWarning);
+        editTextStockPrice=(EditText)v.findViewById(R.id.editTextStockPrice);
+        editTextNoofShares=(EditText)v.findViewById(R.id.editTextNumberofShares);
+        editTextMarginRate=(EditText)v.findViewById(R.id.editTextMarginRate);
+        textViewResultAmontRequired=(TextView) v.findViewById(R.id.textViewResultAmountRequired);
+        buttonCalculate=(Button)v.findViewById(R.id.buttonCalculate);
+        buttonReset=(Button)v.findViewById(R.id.buttonStockReset);
 
         buttonCalculate.setOnClickListener(this);
         buttonReset.setOnClickListener(this);
-
+return v;
     }
     private void calculateStockMargin() {
         if(editTextStockPrice.getText().toString().trim().equals("")&& editTextNoofShares.getText().toString().trim().equals("")&& editTextMarginRate.getText().toString().trim().equals(""))
@@ -84,8 +86,8 @@ public class StockTradingCalculator extends AppCompatActivity implements View.On
             layoutDisplayResult.setVisibility(View.GONE);
         }else {
             //for hiding keyboard
-            InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+            InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
 
             //getting value from edittext
             stockPrice = Double.parseDouble(editTextStockPrice.getText().toString().trim());

@@ -40,18 +40,7 @@
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
-        <activity
-            android:name="com.facebook.CustomTabActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="@string/fb_login_protocol_scheme" />
-            </intent-filter>
-        </activity>
 
 
         <activity android:name=".Forum.NewPostActivity"
@@ -63,30 +52,6 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="Forum"></activity>
 
-
-
-        <activity android:name="com.nineinfosys.andrioddev5.margincalcualtor.MarginCalcualtor.CurrencyExchange.CurrencyExchangeMain"
-            android:configChanges="orientation|screenSize|keyboardHidden">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nineinfosys.andrioddev5.margincalcualtor.MainActivityDrawer"/>
-        </activity>
-
-        <activity android:name="com.nineinfosys.andrioddev5.margincalcualtor.MarginCalcualtor.stocktrading.StockTradingCalculator"
-            android:configChanges="orientation|screenSize|keyboardHidden">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nineinfosys.andrioddev5.margincalcualtor.MainActivityDrawer"/>
-        </activity>
-
-
-        <activity android:name="com.nineinfosys.andrioddev5.margincalcualtor.MarginCalcualtor.profitMargin.ProfitMarginMain"
-            android:configChanges="orientation|screenSize|keyboardHidden">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nineinfosys.andrioddev5.margincalcualtor.MainActivityDrawer"/>
-        </activity>
-
         <activity
             android:name="com.nineinfosys.andrioddev5.margincalcualtor.RequestApp"
             android:configChanges="orientation|screenSize|keyboardHidden">
@@ -94,7 +59,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nineinfosys.andrioddev5.margincalcualtor.MainActivityDrawer" />
         </activity>
-        <activity android:name="com.nineinfosys.andrioddev5.margincalcualtor.DashBord.ShowFeeds"></activity>
+
 
         <activity android:name=".LoginActivity.Login"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -109,6 +74,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LoginActivity.Login" />
         </activity>
+
+
     </application>
 
 

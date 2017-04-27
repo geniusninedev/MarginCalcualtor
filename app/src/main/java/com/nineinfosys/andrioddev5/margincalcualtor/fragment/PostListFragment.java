@@ -1,5 +1,6 @@
 package com.nineinfosys.andrioddev5.margincalcualtor.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
+import com.google.firebase.database.ValueEventListener;
 import com.nineinfosys.andrioddev5.margincalcualtor.Forum.PostDetailActivity;
 
 import com.nineinfosys.andrioddev5.margincalcualtor.R;
@@ -32,7 +34,7 @@ import com.google.firebase.quickstart.database.viewholder.PostViewHolder;*/
 public abstract class PostListFragment extends Fragment {
 
     private static final String TAG = "PostListFragment";
-
+    ProgressDialog loading;
     // [START define_database_reference]
     private DatabaseReference mDatabase;
     // [END define_database_reference]
@@ -70,7 +72,7 @@ public abstract class PostListFragment extends Fragment {
         mManager.setStackFromEnd(true);
         mRecycler.setLayoutManager(mManager);
 
-
+        loading = ProgressDialog.show(getActivity(), "Please wait...","Fetching data...",false,false);
         // Set up FirebaseRecyclerAdapter with the Query
         Query postsQuery = getQuery(mDatabase);
         mAdapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(Post.class, R.layout.item_post,
@@ -152,6 +154,17 @@ public abstract class PostListFragment extends Fragment {
             }
 
         };
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                loading.dismiss();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         mRecycler.setAdapter(mAdapter);
 

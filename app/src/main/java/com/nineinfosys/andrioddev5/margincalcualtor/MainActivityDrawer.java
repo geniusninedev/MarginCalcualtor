@@ -13,10 +13,14 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -30,7 +34,6 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nineinfosys.andrioddev5.margincalcualtor.DashBord.DashBord;
 import com.nineinfosys.andrioddev5.margincalcualtor.Contacts.Contacts;
 import com.nineinfosys.andrioddev5.margincalcualtor.Forum.ForumActivity;
 import com.nineinfosys.andrioddev5.margincalcualtor.LoginActivity.Login;
@@ -44,6 +47,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.http.OkHttpClientFactory;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
+import com.nineinfosys.andrioddev5.margincalcualtor.calculator.CalculatorFragment;
+import com.nineinfosys.andrioddev5.margincalcualtor.fragment.MyTopPostsFragment;
+import com.nineinfosys.andrioddev5.margincalcualtor.fragment.RecentPostsFragment;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.net.MalformedURLException;
@@ -74,22 +80,19 @@ public class MainActivityDrawer extends AppCompatActivity {
     TextView Name,email;
     public Toolbar toolbar;
     Intent intent;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawermain);
-
         //firbase auth
         firebaseAuth=FirebaseAuth.getInstance();
-
         //keyboard hidden first time
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
         /**
          *Setup the DrawerLayout and NavigationView
          */
-
-
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mNavigationView = (NavigationView) findViewById(R.id.shitstuff);
         Name = (TextView) mNavigationView.getHeaderView(0).findViewById(R.id.name);
@@ -104,11 +107,10 @@ public class MainActivityDrawer extends AppCompatActivity {
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mNavigationView.setItemIconTintList(null);
-        mFragmentTransaction.replace(R.id.containerView, new DashBord()).commit();
+        mFragmentTransaction.replace(R.id.containerView, new CalculatorFragment()).commit();
         /**
          * Setup click events on the Navigation View Items.
          */
-
 
         // Button launches NewPostActivity
         findViewById(R.id.fab_Forum).setOnClickListener(new View.OnClickListener() {
@@ -121,31 +123,6 @@ public class MainActivityDrawer extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 mDrawerLayout.closeDrawers();
-                if (menuItem.getItemId() == R.id.DashBord) {
-                    FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.containerView, new DashBord()).commit();
-
-                }
-
-                if (menuItem.getItemId() == R.id.ProfitMarginCalculator) {
-                    /*FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.containerView, new IdealWeightFragment()).commit();*/
-                        Intent intent=new Intent(MainActivityDrawer.this,ProfitMarginMain.class);
-                        startActivity(intent);
-                }
-                if (menuItem.getItemId() == R.id.StockTradingMarginCalculator) {
-                   /*FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.containerView, new IdealWeightFragment()).commit();*/
-                        Intent intent = new Intent(MainActivityDrawer.this, StockTradingCalculator.class);
-                        startActivity(intent);
-                    }
-               if (menuItem.getItemId() == R.id.CurrencyExchangeMarginCalculator) {
-                   /* FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.containerView, new FATFragment()).commit();*/
-                    Intent intent=new Intent(MainActivityDrawer.this, CurrencyExchangeMain.class);
-                    startActivity(intent);
-                }
-
                 //communicate
                 if (menuItem.getItemId() == R.id.Share) {
                     final String appPackageName = getPackageName();

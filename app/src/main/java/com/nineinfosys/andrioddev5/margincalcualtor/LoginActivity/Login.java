@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +26,8 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.nineinfosys.andrioddev5.margincalcualtor.MainActivityDrawer;
+import com.nineinfosys.andrioddev5.margincalcualtor.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -44,11 +45,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.nineinfosys.andrioddev5.margincalcualtor.MainActivityDrawer;
-import com.nineinfosys.andrioddev5.margincalcualtor.R;
 
 import org.json.JSONObject;
-
 
 public class Login extends AppCompatActivity {
 
@@ -70,19 +68,15 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
-        mDataBase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.app_id)).child("Users");//.child(getString(R.string.facebook_data));
-        mDataBaseGoogle = FirebaseDatabase.getInstance().getReference().child(getString(R.string.app_id)).child("Users");//.child(getString(R.string.google_data));
+        mDataBase = FirebaseDatabase.getInstance().getReference().child("Users");
+        mDataBaseGoogle = FirebaseDatabase.getInstance().getReference().child("Users");
 
         email = (EditText) findViewById(R.id.edit_text_email_id);
         password = (EditText) findViewById(R.id.edit_text_password);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Login");
 
         //Resetting Password of Registered Email ID
         resetPassword = (TextView)findViewById(R.id.textViewForgetPass);
@@ -240,7 +234,9 @@ public class Login extends AppCompatActivity {
     //Goes to SignUp Activity for registering User
     public void onSignUpClicked(View view) {
         Intent intent = new Intent(this, SignUp.class);
+
         startActivity(intent);
+        finish();
     }
 
     //Login User
@@ -284,8 +280,9 @@ public class Login extends AppCompatActivity {
                                 Toast.makeText(Login.this,"You are in =)",Toast.LENGTH_LONG).show();
 
                                 Intent intent = new Intent(getApplicationContext(), MainActivityDrawer.class);
-                                startActivity(intent);
                                 finish();
+                                startActivity(intent);
+
                             }
 
                             else {

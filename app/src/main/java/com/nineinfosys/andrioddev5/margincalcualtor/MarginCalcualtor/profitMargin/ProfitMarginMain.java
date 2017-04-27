@@ -1,10 +1,13 @@
 package com.nineinfosys.andrioddev5.margincalcualtor.MarginCalcualtor.profitMargin;
 
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -20,7 +23,7 @@ import com.nineinfosys.andrioddev5.margincalcualtor.R;
 
 import java.text.DecimalFormat;
 
-public class ProfitMarginMain extends AppCompatActivity implements View.OnClickListener{
+public class ProfitMarginMain extends Fragment implements View.OnClickListener{
 
 
 
@@ -32,47 +35,48 @@ public class ProfitMarginMain extends AppCompatActivity implements View.OnClickL
 
     LinearLayout layoutDisplayResult,layoutWarning;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.profit_margin_main);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.profit_margin_main, null);
+
 
         //keyboard hidden first time
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        MobileAds.initialize(ProfitMarginMain.this, getString(R.string.ads_app_id));
-        AdView mAdView = (AdView) this.findViewById(R.id.adViewProfitMarginCalculator);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        MobileAds.initialize(getActivity(), getString(R.string.ads_app_id));
+        AdView mAdView = (AdView) v.findViewById(R.id.adViewProfitMarginCalculator);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
         //customize toolbar
-        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.app_bar);
+    /*    android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Profit Margin Calcualtor");
+        getSupportActionBar().setTitle("Profit Margin Calcualtor");*/
 
         //initialization of profitmargin calculation class
         profitMarginCalcualtor=new profitMarginCalcualtor();
 
         //declarting designing tools
-        layoutDisplayResult=(LinearLayout)findViewById(R.id.layoutDisplayResult);
-        layoutWarning=(LinearLayout)findViewById(R.id.layoutWarning);
-        editTextCost=(EditText)findViewById(R.id.editTextCost);
-        editTextSaleRevenue=(EditText)findViewById(R.id.editTextSaleRevenue);
-        editTextGrossMargin=(EditText)findViewById(R.id.editTextGrossMargin);
-        textViewResultCost=(TextView)findViewById(R.id.textViewResultCost);
-        textViewResultSalerevenue=(TextView)findViewById(R.id.textViewResultSaleRevenue);
-        textViewResultGrossMargin=(TextView)findViewById(R.id.textViewResultGrossMargin);
-        textViewResultGrossMarginPercent=(TextView)findViewById(R.id.textViewInterestperINRpgm);
-        textViewResultGrossMarginINR=(TextView)findViewById(R.id.textViewInterestperINRA);
-        textViewResultofcostrevenuegross=(TextView)findViewById(R.id.textViewResultofcostrevenuegross);
-        textViewResultGrossProfit=(TextView)findViewById(R.id.textViewResultGrossProfit);
-        textViewResultMarkup=(TextView)findViewById(R.id.textViewResultMarkup);
-        buttonCalcualte=(Button)findViewById(R.id.buttonCalculate);
-        buttonReset=(Button)findViewById(R.id.buttonProfitReset);
+        layoutDisplayResult=(LinearLayout)v.findViewById(R.id.layoutDisplayResult);
+        layoutWarning=(LinearLayout)v.findViewById(R.id.layoutWarning);
+        editTextCost=(EditText)v.findViewById(R.id.editTextCost);
+        editTextSaleRevenue=(EditText)v.findViewById(R.id.editTextSaleRevenue);
+        editTextGrossMargin=(EditText)v.findViewById(R.id.editTextGrossMargin);
+        textViewResultCost=(TextView)v.findViewById(R.id.textViewResultCost);
+        textViewResultSalerevenue=(TextView)v.findViewById(R.id.textViewResultSaleRevenue);
+        textViewResultGrossMargin=(TextView)v.findViewById(R.id.textViewResultGrossMargin);
+        textViewResultGrossMarginPercent=(TextView)v.findViewById(R.id.textViewInterestperINRpgm);
+        textViewResultGrossMarginINR=(TextView)v.findViewById(R.id.textViewInterestperINRA);
+        textViewResultofcostrevenuegross=(TextView)v.findViewById(R.id.textViewResultofcostrevenuegross);
+        textViewResultGrossProfit=(TextView)v.findViewById(R.id.textViewResultGrossProfit);
+        textViewResultMarkup=(TextView)v.findViewById(R.id.textViewResultMarkup);
+        buttonCalcualte=(Button)v.findViewById(R.id.buttonCalculate);
+        buttonReset=(Button)v.findViewById(R.id.buttonProfitReset);
 
         buttonCalcualte.setOnClickListener(this);
         buttonReset.setOnClickListener(this);
 
+        return v;
     }
     private void calcualteProfitMargin() {
         if (editTextGrossMargin.getText().toString().trim().equals("") && editTextSaleRevenue.getText().toString().trim().equals("")  && editTextCost.getText().toString().trim().equals("") )
@@ -105,8 +109,8 @@ public class ProfitMarginMain extends AppCompatActivity implements View.OnClickL
         else {
 
             //for hiding keyboard
-            InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+            InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
 
             layoutDisplayResult.setVisibility(View.VISIBLE);
             layoutWarning.setVisibility(View.GONE);

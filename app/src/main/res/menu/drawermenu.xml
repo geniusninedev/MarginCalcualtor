@@ -1,36 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:id="@+id/grp1" android:checkableBehavior="single" >
-        <item
-            android:id="@+id/DashBord"
-            android:icon="@drawable/btn_home"
-            android:title="Feeds" />
-    </group>
 
 
-  <item
-           android:id="@+id/MarginCalculator"
-           android:title="Margin Calculator"
-         >
-   <menu>
-
-
-       <item
-           android:id="@+id/ProfitMarginCalculator"
-           android:icon="@drawable/ic_profit"
-           android:title="Profit Margin Calculator" />
-       <item
-           android:id="@+id/StockTradingMarginCalculator"
-           android:icon="@drawable/ic_stock"
-           android:title="Stock Trading Margin Calculator" />
-       <item
-           android:id="@+id/CurrencyExchangeMarginCalculator"
-           android:icon="@drawable/ic_currecny"
-           android:title="Currency Exchange Margin Calculator" />
-   </menu>
-
-    </item>
     <item
            android:id="@+id/Communicate"
            android:title="Communicate" >

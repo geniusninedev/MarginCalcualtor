@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-    <include
+  <!--  <include
         android:id="@+id/app_bar"
-        layout="@layout/app_bar" />
+        layout="@layout/app_bar" />-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize">
+        android:layout_marginTop="10dp">
      >
         <LinearLayout
             android:orientation="vertical"
@@ -76,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="2dp">
+                android:layout_marginTop="5dp">
 
                 <TextView
                     android:text="Number of Shares"

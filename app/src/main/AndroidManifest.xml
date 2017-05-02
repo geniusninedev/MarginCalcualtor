@@ -44,13 +44,25 @@
 
 
         <activity android:name=".Forum.NewPostActivity"
-            android:label="Add New Post"/>
+            android:label="Add New Post">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Forum.ForumActivity" />
+        </activity>
         <activity android:name=".Forum.PostDetailActivity"
-            android:label="Comment"/>
+            android:label="Comment">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Forum.ForumActivity" />
+        </activity>
 
         <activity android:name=".Forum.ForumActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="Forum"></activity>
+            android:label="Forum">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivityDrawer" />
+        </activity>
 
         <activity
             android:name="com.nineinfosys.andrioddev5.margincalcualtor.RequestApp"

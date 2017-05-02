@@ -7,9 +7,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.nineinfosys.andrioddev5.margincalcualtor.MainActivityDrawer;
 import com.nineinfosys.andrioddev5.margincalcualtor.R;
 import com.nineinfosys.andrioddev5.margincalcualtor.fragment.MyTopPostsFragment;
 import com.nineinfosys.andrioddev5.margincalcualtor.fragment.RecentPostsFragment;
@@ -63,8 +65,11 @@ public class ForumActivity extends BaseActivity {
         findViewById(R.id.fab_new_post).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
                 startActivity(new Intent(ForumActivity.this, NewPostActivity.class));
             }
         });
     }
+
+
 }

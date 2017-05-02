@@ -91,6 +91,7 @@ public abstract class PostListFragment extends Fragment {
                         // Launch PostDetailActivity
                         Intent intent = new Intent(getActivity(), PostDetailActivity.class);
                         intent.putExtra(PostDetailActivity.EXTRA_POST_KEY, postKey);
+                        getActivity().finish();
                         startActivity(intent);
                     }
                 });

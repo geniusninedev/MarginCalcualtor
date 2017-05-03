@@ -24,7 +24,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nineinfosys.andrioddev5.margincalcualtor.LoginActivity.User;
-import com.nineinfosys.andrioddev5.margincalcualtor.MainActivityDrawer;
 import com.nineinfosys.andrioddev5.margincalcualtor.R;
 import com.nineinfosys.andrioddev5.margincalcualtor.models.Comment;
 import com.nineinfosys.andrioddev5.margincalcualtor.models.Post;
@@ -336,7 +335,6 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         }
         return super.onOptionsItemSelected(item);
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();

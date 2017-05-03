@@ -115,11 +115,10 @@ public abstract class PostListFragment extends Fragment {
                 });
                 // Determine if the current user has liked this post and set UI accordingly
                 if (model.likes.containsKey(getUid())) {
-                    viewHolder.likeView.setText("UnLike");
+                    viewHolder.likeView.setTextColor(getActivity().getResources().getColor(R.color.colorLike));
                 } else {
-                    viewHolder.likeView.setText("Like");
+                    viewHolder.likeView.setTextColor(getActivity().getResources().getColor(R.color.secondary_text));
                 }
-
                 // Bind Post to ViewHolder, setting OnClickListener for the star button
                 viewHolder.bindToPost(model, new View.OnClickListener() {
                     @Override

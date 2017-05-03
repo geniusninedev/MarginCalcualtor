@@ -16,19 +16,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.nineinfosys.andrioddev5.margincalcualtor.LoginActivity.User;
 import com.nineinfosys.andrioddev5.margincalcualtor.R;
 import com.nineinfosys.andrioddev5.margincalcualtor.models.Post;
-import com.nineinfosys.andrioddev5.margincalcualtor.models.User;
-
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-
-/*import com.google.firebase.quickstart.database.R;
-import com.google.firebase.quickstart.database.models.Post;
-import com.google.firebase.quickstart.database.models.User;*/
 
 public class NewPostActivity extends BaseActivity {
 
@@ -54,7 +49,7 @@ public class NewPostActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         // [START initialize_database_ref]
-        mDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.app_id));
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         // [END initialize_database_ref]
 
         mTitleField = (EditText) findViewById(R.id.field_title);
@@ -149,7 +144,7 @@ public class NewPostActivity extends BaseActivity {
     private void writeNewPost(String userId, String username, String title, String body, String messageTime, String messageDate) {
         // Create new post at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
-        String key = mDatabase.child("Forum").child("posts").push().getKey();
+        String key = mDatabase.child(getString(R.string.app_id)).child("Forum").child("posts").push().getKey();
         Post post = new Post(userId, username, title, body,messageTime,messageDate);
         Map<String, Object> postValues = post.toMap();
 
@@ -157,12 +152,13 @@ public class NewPostActivity extends BaseActivity {
         childUpdates.put("/posts/" + key, postValues);
         childUpdates.put("/user-posts/" + userId + "/" + key, postValues);
 
-        mDatabase.child("Forum").updateChildren(childUpdates);
+        mDatabase.child(getString(R.string.app_id)).child("Forum").updateChildren(childUpdates);
     }
     // [END write_fan_out]
 
 
-    @Override
+
+   @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -176,7 +172,6 @@ public class NewPostActivity extends BaseActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
